@@ -1,0 +1,9 @@
+{
+  "name": "travel-root",
+  "version": "1.0.0",
+  "description": "Root runner for Discover Andhra Pradesh project",
+  "scripts": {
+    "start": "npm --prefix Discover-Andhra-Pradesh-main/Discover-Andhra-Pradesh-main start",
+    "dev": "npm --prefix Discover-Andhra-Pradesh-main/Discover-Andhra-Pradesh-main run dev"
+  }
+}

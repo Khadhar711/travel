@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discover Andhra Pradesh | Official Tourism & Live Guide</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Leaflet.js Interactive Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <nav class="topbar">
+        <div class="site-title">
+            <h1>Discover Andhra Pradesh</h1>
+            <p>Your Complete Tourism Guide</p>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#districts">Districts</a>
+                <div class="submenu">
+                    <div class="submenu-content">
+                        <h3>Explore Districts</h3>
+                        <div class="submenu-grid">
+                            <a href="#anantapur" class="submenu-item">Anantapur</a>
+                            <a href="#chittoor" class="submenu-item">Chittoor</a>
+                            <a href="#eastgodavari" class="submenu-item">East Godavari</a>
+                            <a href="#guntur" class="submenu-item">Guntur</a>
+                            <a href="#krishna" class="submenu-item">Krishna</a>
+                            <a href="#kurnool" class="submenu-item">Kurnool</a>
+                            <a href="#prakasam" class="submenu-item">Prakasam</a>
+                            <a href="#nellore" class="submenu-item">Nellore</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#historical">Historical</a>
+                <div class="submenu">
+                    <div class="submenu-content">
+                        <h3>Historical Sites</h3>
+                        <div class="submenu-grid">
+                            <a href="lepa.html" class="submenu-item">Lepakshi Temple</a>
+                            <a href="cave.html" class="submenu-item">Undavalli Caves</a>
+                            <a href="#gandikota" class="submenu-item">Gandikota</a>
+                            <a href="amara.html" class="submenu-item">Amaravati Stupa</a>
+                            <a href="kondapalli.html" class="submenu-item">Kondapalli Fort</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#religious">Religious</a>
+                <div class="submenu">
+                    <div class="submenu-content">
+                        <h3>Religious Sites</h3>
+                        <div class="submenu-grid">
+                            <a href="tirumala.html" class="submenu-item">Tirumala Temple</a>
+                            <a href="simhachalam.html" class="submenu-item">Simhachalam Temple</a>
+                            <a href="srisailam.html" class="submenu-item">Srisailam Temple</a>
+                            <a href="ahobilam.html" class="submenu-item">Ahobilam</a>
+                            <a href="srikalasti.html" class="submenu-item">Sri Kalahasti Temple</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#natural">Natural</a>
+                <div class="submenu">
+                    <div class="submenu-content">
+                        <h3>Natural Attractions</h3>
+                        <div class="submenu-grid">
+                            <a href="araku.html" class="submenu-item">Araku Valley</a>
+                            <a href="borra.html" class="submenu-item">Borra Caves</a>
+                            <a href="pulicat.html" class="submenu-item">Pulicat Lake</a>
+                            <a href="belum.html" class="submenu-item">Belum Caves</a>
+                            <a href="horsley.html" class="submenu-item">Horsley Hills</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="#cultural">Cultural</a>
+                <div class="submenu">
+                    <div class="submenu-content">
+                        <h3>Cultural Heritage</h3>
+                        <div class="submenu-grid">
+                            <a href="etukopakka.html" class="submenu-item">Etikoppaka</a>
+                            <a href="traditional crafts.html" class="submenu-item">Traditional Crafts</a>
+                            <a href="localfest.html" class="submenu-item">Local Festivals</a>
+                            <a href="cusine.html" class="submenu-item">Regional Cuisine</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <!-- Action Header Items -->
+        <div style="display: flex; align-items: center; gap: 6px; margin-left: auto; flex-wrap: wrap;">
+            <button id="langToggleBtn" class="nav-action-btn lang-btn" title="Switch Language (English / తెలుగు)">తెలుగు</button>
+            <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Light/Dark Mode">🌙</button>
+            <button id="itineraryNavBtn" class="nav-action-btn itin-btn">🤖 AI Planner</button>
+            <button id="routesNavBtn" class="nav-action-btn routes-btn">🚗 Routes</button>
+            <button id="foodTrailNavBtn" class="nav-action-btn food-btn">🍛 Food Trail</button>
+            <button id="tourPackagesNavBtn" class="nav-action-btn packages-btn">📦 Tour Packages</button>
+            <button id="budgetCalcBtn" class="nav-action-btn budget-btn">💰 Budget Calc</button>
+            <div id="userNavSection" class="user-nav-section"></div>
+        </div>
+    </nav>
+
+    <!-- Breathtaking Hero Banner -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <span class="hero-subtitle" id="heroSubtitleText">✨ Official Andhra Pradesh Travel Portal</span>
+            <h1 class="hero-title" id="heroTitleText">Discover the Soul of Andhra Pradesh 🌄</h1>
+            <p class="hero-text" id="heroDescText">Explore pristine beaches, ancient temples, grand canyons, & misty hill stations with real-time crowd telemetry.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-pill"><span id="statDest">🏛️ <strong>36+</strong> Destinations</span></div>
+                <div class="stat-pill"><span id="statDist">📍 <strong>13</strong> Districts</span></div>
+                <div class="stat-pill"><span id="statCrowd">🔴 <strong>24/7</strong> Live Crowd Monitor</span></div>
+                <div class="stat-pill"><span id="statRating">⭐ <strong>4.9/5</strong> Traveler Rating</span></div>
+            </div>
+
+            <div class="hero-actions">
+                <button id="heroExploreBtn" class="hero-btn primary">🗺️ Explore Live Map</button>
+                <button id="heroItinBtn" class="hero-btn primary">🤖 Plan Trip with AI</button>
+                <button id="heroFoodBtn" class="hero-btn secondary">🍛 Andhra Food Trail</button>
+                <button id="heroPackagesBtn" class="hero-btn secondary">📦 View Tour Packages</button>
+                <button id="heroBudgetBtn" class="hero-btn secondary">💰 Calculate Tour Budget</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <!-- Search & Filter Controls -->
+        <div class="search-filter-container">
+            <div class="search-bar-row" style="display: flex; gap: 10px; width: 100%; flex-wrap: wrap;">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="🔍 Search destinations, districts, or keywords..." 
+                    class="search-input"
+                    style="flex: 2; min-width: 250px;"
+                >
+                <select id="sortSelect" class="sort-select" style="flex: 1; min-width: 180px;">
+                    <option value="name-asc">Sort: Name (A-Z)</option>
+                    <option value="crowd-low">Sort: Live Crowd (Low First 🟢)</option>
+                    <option value="type">Sort: Category</option>
+                </select>
+
+                <div class="view-switch-group">
+                    <button id="viewGridBtn" class="view-toggle-btn active">🎴 Cards View</button>
+                    <button id="viewMapBtn" class="view-toggle-btn">🗺️ Live Map</button>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; flex-wrap: wrap; gap: 10px;">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="district">Districts</button>
+                    <button class="filter-btn" data-filter="historical">Historical</button>
+                    <button class="filter-btn" data-filter="religious">Religious</button>
+                    <button class="filter-btn" data-filter="natural">Natural</button>
+                    <button class="filter-btn" data-filter="cultural">Cultural</button>
+                </div>
+
+                <span id="resultsCountBadge" class="results-count">Showing 36 Destinations</span>
+            </div>
+        </div>
+
+        <!-- Grid Container -->
+        <div id="locationGrid" class="location-grid"></div>
+
+        <!-- Interactive Map Container -->
+        <div id="mapViewContainer" style="display: none; height: 580px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1;"></div>
+    </div>
+
+    <!-- Detail Location Modal -->
+    <div id="locationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Booking Form Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-booking close">&times;</span>
+            <h2 id="bookingModalTitle">📅 Book Your Tour / Hotel</h2>
+            <form id="bookingForm" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+                <input type="hidden" id="bookingLocationId">
+                <input type="hidden" id="bookingLocationName">
+                <div>
+                    <label style="font-weight: 600; font-size: 0.9rem;">Travel Date:</label>
+                    <input type="date" id="bookingDate" required style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; margin-top: 5px;">
+                </div>
+                <div>
+                    <label style="font-weight: 600; font-size: 0.9rem;">Number of Guests:</label>
+                    <input type="number" id="bookingGuests" min="1" max="20" value="1" required style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; margin-top: 5px;">
+                </div>
+                <div>
+                    <label style="font-weight: 600; font-size: 0.9rem;">Contact Phone:</label>
+                    <input type="tel" id="bookingPhone" placeholder="+91 98765 43210" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; margin-top: 5px;">
+                </div>
+                <div>
+                    <label style="font-weight: 600; font-size: 0.9rem;">Special Notes / Requests:</label>
+                    <textarea id="bookingNotes" rows="3" placeholder="Hotel preference, guide requests..." style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; margin-top: 5px;"></textarea>
+                </div>
+                <button type="submit" class="action-btn book-now" style="width: 100%; text-align: center; padding: 12px; font-size: 1rem; border: none; cursor: pointer;">💳 Proceed to Payment & Checkout</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Realistic Payment Checkout Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content" style="max-width: 520px; padding: 25px;">
+            <span class="close-payment close">&times;</span>
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                <span style="font-size: 1.8rem;">🔒</span>
+                <div>
+                    <h2 style="font-size: 1.3rem; color: #1a73e8; margin: 0;">Secure Travel Checkout</h2>
+                    <p style="font-size: 0.8rem; color: #666; margin: 0;">256-Bit Encrypted Tourism Payment Gateway</p>
+                </div>
+            </div>
+
+            <!-- Order Summary Card -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 15px;">
+                <div style="display: flex; justify-content: space-between; font-weight: 700; color: #1e293b; font-size: 1rem;">
+                    <span id="payDestName">Destination Name</span>
+                    <span id="payTotalAmount" style="color: #2e7d32; font-size: 1.15rem;">₹2,625</span>
+                </div>
+                <div style="font-size: 0.85rem; color: #64748b; margin-top: 4px;">
+                    📅 <span id="payTravelDate">Date</span> • 👥 <span id="payGuests">2 Guests</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #666; border-top: 1px dashed #cbd5e1; margin-top: 8px; padding-top: 8px;">
+                    <span>Base Fare + Service: <span id="payBaseFare">₹2,500</span></span>
+                    <span>GST (5%): <span id="payGst">₹125</span></span>
+                </div>
+            </div>
+
+            <!-- Payment Method Tabs -->
+            <label style="font-weight: 600; font-size: 0.85rem; color: #334155;">Select Payment Method:</label>
+            <div style="display: flex; gap: 8px; margin: 8px 0 14px;">
+                <button type="button" class="pay-tab-btn active" data-method="upi" style="flex: 1; padding: 8px; border-radius: 8px; border: 1px solid #1a73e8; background: #e8f0fe; font-weight: 600; font-size: 0.85rem; cursor: pointer; color: #1a73e8;">📱 UPI (GPay/PhonePe)</button>
+                <button type="button" class="pay-tab-btn" data-method="card" style="flex: 1; padding: 8px; border-radius: 8px; border: 1px solid #cbd5e1; background: transparent; font-weight: 600; font-size: 0.85rem; cursor: pointer; color: #334155;">💳 Card</button>
+                <button type="button" class="pay-tab-btn" data-method="counter" style="flex: 1; padding: 8px; border-radius: 8px; border: 1px solid #cbd5e1; background: transparent; font-weight: 600; font-size: 0.85rem; cursor: pointer; color: #334155;">💵 Pay on Arrival</button>
+            </div>
+
+            <!-- UPI View -->
+            <div id="payUpiView" style="text-align: center; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                <div style="display: inline-block; background: #fff; padding: 10px; border-radius: 8px; border: 2px dashed #1a73e8;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=upi://pay?pa=aptdc@sbi&pn=AndhraPradeshTourism&mc=5999&am=2625" alt="UPI QR Code" style="width: 130px; height: 130px; display: block;">
+                </div>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 6px;">Scan with Google Pay, PhonePe, or Paytm</p>
+                <div style="font-size: 0.75rem; color: #1a73e8; font-weight: 600;">UPI ID: aptdc.tourism@sbi</div>
+            </div>
+
+            <!-- Card View -->
+            <div id="payCardView" style="display: none; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                <div style="margin-bottom: 10px;">
+                    <label style="font-size: 0.8rem; font-weight: 600; color: #555;">Card Number:</label>
+                    <input type="text" id="payCardNum" value="4532 •••• •••• 8920" placeholder="16-digit card number" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.9rem; margin-top: 4px;">
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <div style="flex: 1;">
+                        <label style="font-size: 0.8rem; font-weight: 600; color: #555;">Expiry Date:</label>
+                        <input type="text" value="12/28" placeholder="MM/YY" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.9rem; margin-top: 4px;">
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="font-size: 0.8rem; font-weight: 600; color: #555;">CVV:</label>
+                        <input type="password" value="•••" placeholder="3 digits" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.9rem; margin-top: 4px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pay on Arrival View -->
+            <div id="payCounterView" style="display: none; background: #fff8e1; border: 1px solid #ffe082; border-radius: 12px; padding: 15px; margin-bottom: 15px; font-size: 0.85rem; color: #b78103;">
+                ℹ️ <strong>Pay at Counter:</strong> You can pay the total amount at the official APTDC check-in counter via Cash or UPI when you arrive.
+            </div>
+
+            <button id="confirmPaymentBtn" class="action-btn book-now" style="width: 100%; padding: 12px; font-size: 1rem; border: none; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                <span>🔒 Complete Payment (<span id="payBtnAmount">₹2,625</span>)</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Official Travel E-Voucher / Ticket Modal -->
+    <div id="ticketModal" class="modal">
+        <div class="modal-content" style="max-width: 620px; padding: 0; border-radius: 16px; overflow: hidden; background: #fff;">
+            <div style="background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%); color: white; padding: 20px 25px; position: relative;">
+                <span class="close-ticket close" style="color: white; opacity: 0.8;">&times;</span>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 10px;">Official Reservation Voucher</span>
+                        <h2 style="font-size: 1.4rem; margin: 6px 0 2px; color: white;">Andhra Pradesh Tourism (APTDC)</h2>
+                        <p style="font-size: 0.8rem; opacity: 0.9; margin: 0;">E-Reservation Confirmation & Boarding Slip</p>
+                    </div>
+                    <div style="background: #22c55e; color: white; font-weight: 800; font-size: 0.75rem; padding: 4px 10px; border-radius: 12px;">
+                        CONFIRMED ✅
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ticket Body -->
+            <div id="printableTicketArea" style="padding: 25px;">
+                <div style="display: flex; justify-content: space-between; border-bottom: 2px dashed #cbd5e1; padding-bottom: 15px; margin-bottom: 15px;">
+                    <div>
+                        <div style="font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 600;">Booking Reference:</div>
+                        <div id="tktRef" style="font-size: 1.15rem; font-weight: 800; color: #1a73e8;">APTDC-2026-894210</div>
+                        <div style="font-size: 0.8rem; color: #555; margin-top: 4px;">Txn ID: <strong id="tktTxn">TXN-847291</strong></div>
+                    </div>
+                    <div style="text-align: right;">
+                        <img id="tktQrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=APTDC-VERIFIED-TICKET" alt="Ticket QR" style="width: 80px; height: 80px; border-radius: 6px; border: 1px solid #ddd;">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.9rem; margin-bottom: 18px;">
+                    <div>
+                        <div style="color: #64748b; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;">Destination / Tour:</div>
+                        <div id="tktDest" style="font-weight: 700; color: #1e293b; font-size: 1rem;">Tirumala Temple</div>
+                    </div>
+                    <div>
+                        <div style="color: #64748b; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;">Travel Date:</div>
+                        <div id="tktDate" style="font-weight: 700; color: #1e293b;">2026-10-15</div>
+                    </div>
+                    <div>
+                        <div style="color: #64748b; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;">Travelers:</div>
+                        <div id="tktGuests" style="font-weight: 700; color: #1e293b;">2 Guests</div>
+                    </div>
+                    <div>
+                        <div style="color: #64748b; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;">Contact Mobile:</div>
+                        <div id="tktPhone" style="font-weight: 700; color: #1e293b;">+91 98765 43210</div>
+                    </div>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <span style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase;">Payment Status:</span>
+                        <div id="tktPayMethod" style="font-size: 0.85rem; font-weight: 700; color: #2e7d32;">Paid via UPI (Google Pay)</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase;">Total Amount:</span>
+                        <div id="tktTotal" style="font-size: 1.2rem; font-weight: 800; color: #2e7d32;">₹2,625</div>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.75rem; color: #64748b; line-height: 1.5; border-top: 1px solid #eee; padding-top: 10px;">
+                    📌 <strong>Important Instructions:</strong> Please present this e-voucher along with a valid Government ID at the tourism helpdesk or hotel reception. 24/7 AP Tourism Helpline: <strong>1800-425-45454</strong>.
+                </div>
+            </div>
+
+            <!-- Ticket Footer Buttons -->
+            <div style="background: #f1f5f9; padding: 15px 25px; display: flex; justify-content: flex-end; gap: 10px;">
+                <button id="printTicketBtn" class="action-btn book-now" style="width: auto; padding: 8px 18px; font-size: 0.85rem;">🖨️ Download / Print Ticket</button>
+                <button id="closeTicketBottomBtn" class="action-btn learn-more" style="width: auto; padding: 8px 18px; font-size: 0.85rem;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Bookings Modal -->
+    <div id="myBookingsModal" class="modal">
+        <div class="modal-content" style="max-width: 650px;">
+            <span class="close-mybookings close">&times;</span>
+            <h2>📅 My Confirmed Tour & Hotel Bookings</h2>
+            <div id="myBookingsList" style="margin-top: 15px; max-height: 400px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <!-- Wishlist Modal -->
+    <div id="wishlistModal" class="modal">
+        <div class="modal-content" style="max-width: 650px;">
+            <span class="close-wishlist close">&times;</span>
+            <h2>❤️ My Saved Wishlist & Destinations</h2>
+            <div id="wishlistContainer" class="location-grid" style="margin-top: 15px; max-height: 450px; overflow-y: auto; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));"></div>
+        </div>
+    </div>
+
+    <!-- Curated Tour Packages Modal -->
+    <div id="packagesModal" class="modal">
+        <div class="modal-content" style="max-width: 750px;">
+            <span class="close-packages close">&times;</span>
+            <h2>📦 Curated Andhra Pradesh Tour Packages</h2>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 4px;">Handcrafted itineraries including accommodation, transport, & tour guide.</p>
+            
+            <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 18px;">
+                <!-- Package 1 -->
+                <div class="package-card" style="background: #f8f9fa; border: 1px solid #e0e0e0; padding: 16px; border-radius: 10px; border-left: 5px solid #1a73e8;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <h3 style="color: #1a73e8; font-size: 1.1rem;">🌄 Araku & Vizag Coastal Escape</h3>
+                            <span style="font-size: 0.8rem; background: #e8f0fe; color: #1a73e8; padding: 2px 8px; border-radius: 10px; font-weight: 600;">3 Days / 2 Nights</span>
+                        </div>
+                        <span style="font-size: 1.2rem; font-weight: 800; color: #2e7d32;">₹4,999 <span style="font-size: 0.75rem; font-weight: 400; color: #666;">/ person</span></span>
+                    </div>
+                    <p style="font-size: 0.85rem; margin-top: 8px; color: #444;">Covers RK Beach, Borra Caves, Araku Valley coffee plantations, and Tribal Museum with AC transport and resort stay.</p>
+                    <button class="action-btn book-now package-book-btn" data-name="Araku & Vizag Coastal Escape (3D/2N)" style="margin-top: 10px; padding: 8px 16px; width: auto; font-size: 0.85rem;">Book Package</button>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="package-card" style="background: #f8f9fa; border: 1px solid #e0e0e0; padding: 16px; border-radius: 10px; border-left: 5px solid #ff9800;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <h3 style="color: #e68900; font-size: 1.1rem;">🕉️ Tirumala & Divine Heritage Trail</h3>
+                            <span style="font-size: 0.8rem; background: #fff3e0; color: #e68900; padding: 2px 8px; border-radius: 10px; font-weight: 600;">2 Days / 1 Night</span>
+                        </div>
+                        <span style="font-size: 1.2rem; font-weight: 800; color: #2e7d32;">₹3,499 <span style="font-size: 0.75rem; font-weight: 400; color: #666;">/ person</span></span>
+                    </div>
+                    <p style="font-size: 0.85rem; margin-top: 8px; color: #444;">Includes Special Darshan Assistance at Tirumala, Sri Kalahasti Rahu-Ketu Temple visit, and hotel stay.</p>
+                    <button class="action-btn book-now package-book-btn" data-name="Tirumala & Divine Heritage Trail (2D/1N)" style="margin-top: 10px; padding: 8px 16px; width: auto; font-size: 0.85rem;">Book Package</button>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="package-card" style="background: #f8f9fa; border: 1px solid #e0e0e0; padding: 16px; border-radius: 10px; border-left: 5px solid #9c27b0;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <h3 style="color: #7b1fa2; font-size: 1.1rem;">🏰 Gandikota Canyon & Belum Caves Circuit</h3>
+                            <span style="font-size: 0.8rem; background: #f3e5f5; color: #7b1fa2; padding: 2px 8px; border-radius: 10px; font-weight: 600;">2 Days / 1 Night</span>
+                        </div>
+                        <span style="font-size: 1.2rem; font-weight: 800; color: #2e7d32;">₹2,999 <span style="font-size: 0.75rem; font-weight: 400; color: #666;">/ person</span></span>
+                    </div>
+                    <p style="font-size: 0.85rem; margin-top: 8px; color: #444;">Camping at Gandikota Grand Canyon, sunset bonfire, and guided tour of Belum underground caves.</p>
+                    <button class="action-btn book-now package-book-btn" data-name="Gandikota & Belum Caves Circuit (2D/1N)" style="margin-top: 10px; padding: 8px 16px; width: auto; font-size: 0.85rem;">Book Package</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tour Budget Calculator Modal -->
+    <div id="budgetModal" class="modal">
+        <div class="modal-content" style="max-width: 520px;">
+            <span class="close-budget close">&times;</span>
+            <h2>💰 Interactive Tour Budget Calculator</h2>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 4px;">Estimate total trip costs for accommodation, food, transport, & tickets.</p>
+            
+            <form id="budgetForm" style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px;">
+                <div>
+                    <label style="font-weight: 600; font-size: 0.85rem;">Trip Duration (Days):</label>
+                    <input type="number" id="budgetDays" min="1" max="30" value="3" required style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; margin-top: 4px;">
+                </div>
+                <div>
+                    <label style="font-weight: 600; font-size: 0.85rem;">Number of Travelers:</label>
+                    <input type="number" id="budgetGuests" min="1" max="20" value="2" required style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; margin-top: 4px;">
+                </div>
+                <div>
+                    <label style="font-weight: 600; font-size: 0.85rem;">Accommodation Comfort:</label>
+                    <select id="budgetStyle" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; margin-top: 4px;">
+                        <option value="budget">Budget Hotel / Homestay (₹800/night)</option>
+                        <option value="standard" selected>Standard 3-Star Hotel (₹2000/night)</option>
+                        <option value="luxury">Luxury Resort / 5-Star (₹4500/night)</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-weight: 600; font-size: 0.85rem;">Transportation Mode:</label>
+                    <select id="budgetTransport" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; margin-top: 4px;">
+                        <option value="public">Public Transport / Train / Bus (₹300/day)</option>
+                        <option value="private">Private AC Cab / Taxi (₹1200/day)</option>
+                    </select>
+                </div>
+                <button type="submit" class="action-btn book-now" style="border: none; padding: 10px; margin-top: 5px; cursor: pointer;">Calculate Estimate</button>
+            </form>
+
+            <!-- Result Breakdown -->
+            <div id="budgetResult" style="display: none; margin-top: 15px; background: #e8f0fe; padding: 15px; border-radius: 8px; border-left: 4px solid #1a73e8;">
+                <h3 style="color: #1a73e8; font-size: 1.1rem; margin-bottom: 8px;">Estimated Total: <span id="totalCostSpan">₹0</span></h3>
+                <p style="font-size: 0.85rem; color: #555;">Per Person: <strong id="perPersonSpan">₹0</strong></p>
+                <div style="font-size: 0.85rem; margin-top: 10px; line-height: 1.6; color: #333;">
+                    🏨 Accommodation: <span id="stayCostSpan">₹0</span><br>
+                    🍱 Food & Dining: <span id="foodCostSpan">₹0</span><br>
+                    🚗 Transport: <span id="transportCostSpan">₹0</span><br>
+                    🎟️ Sightseeing & Tickets: <span id="ticketCostSpan">₹0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Virtual Video Tour Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content" style="max-width: 700px; padding: 20px;">
+            <span class="close-video close">&times;</span>
+            <h2 id="videoTitle">🎥 Virtual Video Tour</h2>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 15px; border-radius: 8px; background: #000;">
+                <iframe id="videoIframe" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allowfullscreen allow="autoplay"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Custom Itinerary Generator Modal -->
+    <div id="itineraryModal" class="modal">
+        <div class="modal-content" style="max-width: 680px;">
+            <span class="close-itinerary close">&times;</span>
+            <h2>🤖 AI Custom Itinerary Planner</h2>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 4px;">Get a personalized day-by-day and hour-by-hour schedule crafted for your trip.</p>
+            
+            <form id="itineraryForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px;">
+                <div style="grid-column: span 2;">
+                    <label style="font-weight: 600; font-size: 0.85rem;">Destination Hub:</label>
+                    <select id="itinDest" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; margin-top: 4px;">
+                        <option value="tirupati" selected>Tirupati & Tirumala Spiritual Circuit</option>
+                        <option value="araku">Araku Valley & Visakhapatnam Coastal Trail</option>
+                        <option value="gandikota">Gandikota Canyon & Belum Caves Circuit</option>
+                        <option value="srisailam">Srisailam Jyotirlinga & Nallamala Forest</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-weight: 600; font-size: 0.85rem;">Trip Duration:</label>
+                    <select id="itinDays" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; margin-top: 4px;">
+                        <option value="1">1 Day Express Tour</option>
+                        <option value="2" selected>2 Days Weekend Getaway</option>
+                        <option value="3">3 Days Deep Exploration</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-weight: 600; font-size: 0.85rem;">Trip Vibe / Style:</label>
+                    <select id="itinStyle" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; margin-top: 4px;">
+                        <option value="spiritual" selected>🕉️ Spiritual & Heritage</option>
+                        <option value="nature">🌿 Nature & Scenic Beauty</option>
+                        <option value="adventure">🧗 Adventure & Trekking</option>
+                        <option value="family">👨‍👩‍👧‍👦 Family & Leisure</option>
+                    </select>
+                </div>
+                <div style="grid-column: span 2;">
+                    <label style="font-weight: 600; font-size: 0.85rem;">Exploration Pace:</label>
+                    <select id="itinPace" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; margin-top: 4px;">
+                        <option value="balanced" selected>⚖️ Balanced (Recommended)</option>
+                        <option value="relaxed">☕ Relaxed & Leisurely</option>
+                    </select>
+                </div>
+                <button type="submit" class="action-btn book-now" style="grid-column: span 2; padding: 10px; font-size: 0.95rem; border: none; cursor: pointer;">✨ Generate Smart Itinerary</button>
+            </form>
+
+            <!-- Itinerary Results Container -->
+            <div id="itineraryResult" style="display: none; margin-top: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e0e0e0; padding-bottom: 8px; margin-bottom: 15px;">
+                    <div>
+                        <h3 id="itinResTitle" style="color: #1a73e8; font-size: 1.15rem;">Itinerary Schedule</h3>
+                        <span id="itinResMeta" style="font-size: 0.8rem; color: #666;">2 Days • Spiritual Style</span>
+                    </div>
+                    <button id="printItinBtn" class="action-btn learn-more" style="padding: 6px 12px; font-size: 0.8rem;">🖨️ Print / Save</button>
+                </div>
+
+                <div id="itinDaysContainer" style="display: flex; flex-direction: column; gap: 15px; max-height: 400px; overflow-y: auto;"></div>
+
+                <div style="margin-top: 15px; background: #e8f0fe; padding: 12px; border-radius: 8px; font-size: 0.85rem;">
+                    💡 <strong>Traveler Tips:</strong>
+                    <ul id="itinTipsList" style="margin-top: 5px; padding-left: 20px; line-height: 1.5; color: #333;"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inter-City Transit & Distance Matrix Modal -->
+    <div id="routeFinderModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="close-routes close">&times;</span>
+            <h2>🚗 Inter-City Route & Transit Matrix</h2>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 4px;">Check driving distances, highways, trains, flights, and estimated fares.</p>
+            
+            <form id="routeFinderForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px;">
+                <div>
+                    <label style="font-weight: 600; font-size: 0.85rem;">Starting City (Origin):</label>
+                    <select id="routeOrigin" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; margin-top: 4px;">
+                        <option value="hyderabad" selected>Hyderabad (Telangana)</option>
+                        <option value="bengaluru">Bengaluru (Karnataka)</option>
+                        <option value="chennai">Chennai (Tamil Nadu)</option>
+                        <option value="vijayawada">Vijayawada (AP Hub)</option>
+                        <option value="visakhapatnam">Visakhapatnam (Coastal AP)</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="font-weight: 600; font-size: 0.85rem;">Destination in AP:</label>
+                    <select id="routeDest" style="width: 100%; padding: 8px; border-radius: 6px; border: 1px solid #ccc; margin-top: 4px;">
+                        <option value="tirupati" selected>Tirupati / Tirumala</option>
+                        <option value="araku">Araku Valley / Vizag</option>
+                        <option value="gandikota">Gandikota Canyon & Belum</option>
+                        <option value="srisailam">Srisailam Temple</option>
+                    </select>
+                </div>
+                <button type="submit" class="action-btn book-now" style="grid-column: span 2; padding: 10px; font-size: 0.95rem; border: none; cursor: pointer;">🔍 Calculate Route & Transit</button>
+            </form>
+
+            <div id="routeResult" style="display: none; margin-top: 20px;">
+                <div style="background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 10px; padding: 15px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h3 id="routeTitle" style="color: #1a73e8; font-size: 1.1rem;">Route Overview</h3>
+                        <span id="routeDistBadge" style="background: #e8f0fe; color: #1a73e8; font-weight: 700; padding: 4px 10px; border-radius: 12px; font-size: 0.85rem;">550 KM</span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.85rem;">
+                        <div style="background: #fff; padding: 10px; border-radius: 6px; border: 1px solid #eee;">
+                            🚗 <strong>Driving Time:</strong> <span id="routeDrivingTime">9.5 hrs</span><br>
+                            🛣️ <strong>Highway:</strong> <span id="routeHighway">NH44 & NH716</span>
+                        </div>
+                        <div style="background: #fff; padding: 10px; border-radius: 6px; border: 1px solid #eee;">
+                            🚆 <strong>Trains:</strong> <span id="routeTrains">7+ Daily</span><br>
+                            ✈️ <strong>Nearest Airport:</strong> <span id="routeFlight">TIR Airport</span>
+                        </div>
+                        <div style="background: #fff; padding: 10px; border-radius: 6px; border: 1px solid #eee;">
+                            🚌 <strong>Est. Bus Ticket:</strong> <span id="routeBusFare">₹650 - ₹1200</span>
+                        </div>
+                        <div style="background: #fff; padding: 10px; border-radius: 6px; border: 1px solid #eee;">
+                            🚕 <strong>Est. Private Cab:</strong> <span id="routeCabFare">₹8,500</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Andhra Food Trail Modal -->
+    <div id="foodTrailModal" class="modal">
+        <div class="modal-content" style="max-width: 750px;">
+            <span class="close-food close">&times;</span>
+            <h2>🍛 Andhra Pradesh Food Trail & Culinary Guide</h2>
+            <p style="font-size: 0.85rem; color: #666; margin-top: 4px;">Discover world-famous culinary delicacies, authentic recipes, and iconic eateries across Andhra districts.</p>
+            
+            <div style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
+                <button class="food-filter-btn active" data-type="all">All Delicacies</button>
+                <button class="food-filter-btn" data-type="veg">🥬 Vegetarian</button>
+                <button class="food-filter-btn" data-type="nonveg">🍗 Non-Vegetarian</button>
+                <button class="food-filter-btn" data-type="sweet">🍯 Sweets & Desserts</button>
+            </div>
+
+            <div id="foodGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; max-height: 420px; overflow-y: auto; margin-top: 10px;"></div>
+        </div>
+    </div>
+
+    <!-- Floating Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>🗺️ Explore</h3>
+                <ul>
+                    <li><a href="#districts">🏛️ Districts</a></li>
+                    <li><a href="#historical">🏰 Historical Sites</a></li>
+                    <li><a href="#religious">🕉️ Religious Places</a></li>
+                    <li><a href="#natural">🌿 Natural Attractions</a></li>
+                    <li><a href="#cultural">🎭 Cultural Heritage</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>ℹ️ Information</h3>
+                <ul>
+                    <li><a href="#about">👥 About Us</a></li>
+                    <li><a href="#contact">📞 Contact</a></li>
+                    <li><a href="#faq">❓ FAQ</a></li>
+                    <li><a href="#terms">📜 Terms of Use</a></li>
+                    <li><a href="#privacy">🔒 Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>🏨 Tourism Services</h3>
+                <ul>
+                    <li><a href="#hotels">🏨 Hotels</a></li>
+                    <li><a href="#transport">🚌 Transportation</a></li>
+                    <li><a href="#guides">👥 Tour Guides</a></li>
+                    <li><a href="#packages">📦 Tour Packages</a></li>
+                    <li><a href="#booking">📅 Book Now</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>🤝 Connect With Us</h3>
+                <ul>
+                    <li><a href="#facebook">📱 Facebook</a></li>
+                    <li><a href="#instagram">📸 Instagram</a></li>
+                    <li><a href="#twitter">🐦 Twitter</a></li>
+                    <li><a href="#youtube">📺 YouTube</a></li>
+                    <li><a href="#blog">✍️ Travel Blog</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>📍 More ways to explore: <a href="#locations">Find a Location</a> or <a href="#guide">contact a tour guide</a> near you. Or call 📞 1800-123-4567.</p>
+            <div class="footer-legal">
+                <p>© 2025 Andhra Pradesh Tourism. All rights reserved.</p>
+                <div class="legal-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Use</a>
+                    <a href="#sales">Sales Policy</a>
+                    <a href="#legal">Legal</a>
+                    <a href="#sitemap">Site Map</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS CDN -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="locations.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
